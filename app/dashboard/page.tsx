@@ -46,7 +46,7 @@ export default function Dashboard () {
       {loading ? 
         <div
           className="text-my-primary"
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '81vh' }}
           >
             <Spinner />
           </div>
