@@ -4,6 +4,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     extend: {
@@ -11,8 +12,16 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        "primary-gradient":
+        "linear-gradient(180deg, #31859C 0%, #17375E 100%)"
+      },
+      colors: {
+        'my-primary': '#31859C', // Replace with your primary color
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tw-elements/dist/plugin.cjs")
+  ],
 }
+
