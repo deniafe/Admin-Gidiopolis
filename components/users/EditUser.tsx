@@ -80,7 +80,13 @@ export const EditUser = () => {
     }
   }, [currentUser]);
 
-  
+  useEffect(() => {
+    const init = async () => {
+      const { Modal, Ripple, initTE } = await import("tw-elements");
+      initTE({ Modal, Ripple,});
+    };
+    init();
+  }, []);
 
     return (
         <>
@@ -146,17 +152,6 @@ export const EditUser = () => {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="bg-blue-50 w-full text-gray-800 peer block min-h-[auto] rounded-full py-[0.32rem] px-4 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-my-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                            id="exampleFormControlInput1"
-                            placeholder="Email address"
-                            />
-                        </div>
-
-                        <div className="mb-2"> 
-                          <small>Password</small>
-                          <input
-                            type="password"
-                            onChange={(e) => setPassword(e.target.value)}
                             className="bg-blue-50 w-full text-gray-800 peer block min-h-[auto] rounded-full py-[0.32rem] px-4 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-my-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             id="exampleFormControlInput1"
                             placeholder="Email address"

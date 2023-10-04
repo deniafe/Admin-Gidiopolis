@@ -18,6 +18,9 @@ export default function Home () {
   const signInWithEmail = async (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault()
 
+    if(email !== 'wowe.media@gmail.com' || password !== 'Admin_gidiopolis2023') {
+      return errorMessage('Wrong login credentials ❌')
+    }
     if(loading) return
 
     console.log('This is clicking the sign up button')

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useUserEventContext } from "@/context/UserEventContext"
 import { useRouter } from "next/navigation"
 import { Timestamp } from 'firebase/firestore';
@@ -59,6 +59,14 @@ export const UserCard: React.FC<UserCardProps> = ({ id, displayName, email, stat
 
         setCurrentUser(deleteUser)
     }
+
+    useEffect(() => {
+        const init = async () => {
+          const { Collapse, Dropdown, Modal, Ripple, initTE } = await import("tw-elements");
+          initTE({ Collapse, Dropdown, Modal, Ripple,});
+        };
+        init();
+      }, []);
 
   return (
     <div

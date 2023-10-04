@@ -1,6 +1,6 @@
 import { deleteUser } from "@/firebase/api/user";
 import { Loading } from "../global/Loading"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { successMessage } from "@/firebase/success_message";
 import { errorMessage } from "@/firebase/error_message";
 import { useUserEventContext } from "@/context/UserEventContext"
@@ -51,7 +51,13 @@ export const ConfirmDeleteEvent = () => {
     }
   };
   
-
+  useEffect(() => {
+    const init = async () => {
+      const { Modal, Ripple, initTE } = await import("tw-elements");
+      initTE({ Modal, Ripple,});
+    };
+    init();
+  }, []);
 
   return (
     <div

@@ -1,7 +1,7 @@
 'use client'
 import { cutOffLongStrings, formatDate2 } from '@/utils/func';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { useUserEventContext } from "@/context/UserEventContext"
 import { Event } from '@/context/Types'
@@ -41,6 +41,14 @@ const UserEventCard: React.FC<ReusableCardProps> = ({ id, slug, imageUrl, title,
 
     setCurrentUserEvent(foundEvent)
   }
+
+  useEffect(() => {
+    const init = async () => {
+      const { Collapse, Dropdown, Modal, Ripple, initTE } = await import("tw-elements");
+      initTE({ Collapse, Dropdown, Modal, Ripple,});
+    };
+    init();
+  }, []);
 
   return (
     <div

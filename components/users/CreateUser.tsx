@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loading } from '../global/Loading';
 import { createNewUser } from '@/firebase/api/user';
 import { errorMessage } from '@/firebase/error_message';
@@ -48,6 +48,14 @@ export const CreateUser = () => {
    
     // openResetModal()
   }
+
+  useEffect(() => {
+    const init = async () => {
+      const { Modal, Ripple, initTE } = await import("tw-elements");
+      initTE({ Modal, Ripple,});
+    };
+    init();
+  }, []);
 
     return (
         <>
