@@ -21,6 +21,10 @@ interface EmailTemplateProps {
   href: string
 }
 
+const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : '';
+
 export const EmailTemplate = ({
   name,
   actionLabel,
@@ -36,9 +40,9 @@ export const EmailTemplate = ({
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/logo.svg`}
+            src={`https://admin.gidiopolis.com/logo.png`}
             width='200'
-            height='100'
+            height='30'
             alt='Gidiopolis'
             style={logo}
           />
