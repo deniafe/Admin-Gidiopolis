@@ -9,10 +9,10 @@ export async function POST() {
   try {
     const data = await resend.emails.send({
       from: 'Debby - Gidiopolis <debby@gidiopolis.com>',
-      to: ['deniafe@gmail.com'],
-      subject: 'Hello Deniafe',
+      to: ['detoyin@yahoo.com'],
+      subject: 'Welcome To Gidiopolis',
       // html: '<p>Congrats on sending your <strong>second email</strong>!</p>'
-      react: EmailTemplate({ name: 'Toyin', actionLabel: "verify", buttonText: 'Verify Email', href: 'gidiopolis.com' }) as React.ReactElement,
+      react: EmailTemplate({ name: 'Toyin', actionLabel: "verify", buttonText: 'Verify Email', href: 'https://gidiopolis.com/' }) as React.ReactElement,
       // react: EmailTemplate({ firstName: 'Deniafe' }),
     });
 

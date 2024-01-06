@@ -42,18 +42,18 @@ export const EmailTemplate = ({
           <Img
             src={`https://admin.gidiopolis.com/logo.png`}
             width='200'
-            height='30'
+            height='20'
             alt='Gidiopolis'
             style={logo}
           />
           <Text style={paragraph}>Hi {name || 'there'},</Text>
           <Text style={paragraph}>
-            Welcome to Gidiolis, where you can find the most amazing events happening in your city. Use the button below
-            to {actionLabel}.
+            Welcome to Gidiopolis, where you can find the most amazing events happening in your city.
+            We are thrilled to welcome you to a world of excitement, entertainment, and unforgettable experiences.
           </Text>
           <Section style={btnContainer}>
             <Button style={button} href={href}>
-              {buttonText}
+              Get Started
             </Button>
           </Section>
           <Text style={paragraph}>
