@@ -92,33 +92,42 @@ const Navbar = () => {
                   href="#"
                   data-te-nav-link-ref
                 >
-                  {/* Dashboard */}
+                  {/* Users */}
                 </a>
               </li>
             </ul>
 
             <div className="md:flex md:flex-row items-center">
-              {/* <ul className="list-none text-sm font-medium mr-auto pl-6 flex flex-col md:mr-6 md:pl-0 lg:mt-1 lg:flex-row" data-te-navbar-nav-ref>
+              <ul className="list-none text-sm font-medium mr-auto pl-6 flex flex-col md:mr-6 md:pl-0 lg:mt-1 lg:flex-row" data-te-navbar-nav-ref>
                
                  <li className="mb-4 pl-2 lg:mb-0 lg:pl-2 lg:pr-1" data-te-nav-item-ref>
-                  <a
+                  <Link
                     className="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                    href="https://blog.gidiopolis.com/?page_id=30"
+                    href="/dashboard"
                     data-te-nav-link-ref
                   >
                     Users
-                  </a>
+                  </Link>
                 </li>
                 <li className="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
-                  <a
+                  <Link
                     className="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                    href="https://blog.gidiopolis.com/"
+                    href="/events"
                     data-te-nav-link-ref
                   >
                     Events
-                  </a>
+                  </Link>
                 </li>
-              </ul> */}
+                <li className="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
+                  <Link
+                    className="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                    href="/newsletter"
+                    data-te-nav-link-ref
+                  >
+                    Newsletter
+                  </Link>
+                </li>
+              </ul>
 
               <div
               >

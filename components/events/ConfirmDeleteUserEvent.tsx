@@ -3,24 +3,24 @@ import { Loading } from "../global/Loading"
 import { useEffect, useState } from "react"
 import { successMessage } from "@/firebase/success_message";
 import { errorMessage } from "@/firebase/error_message";
-import { useEventContext } from "@/context/EventContext"
+import { useUserEventContext } from "@/context/UserEventContext"
 import { deleteEvent } from "@/firebase/api/event";
 
-export const ConfirmDeleteEvent = () => {
+export const ConfirmDeleteUserEvent = () => {
 
-  const { events, setEvents, currentEvent, setCurrentEvent } = useEventContext()
+  const { userEvents, setUserEvents, currentUserEvent, setCurrentUserEvent } = useUserEventContext()
   const [loading, setLoading] = useState(false)
 
   const closeModal = async () => {
     const { Modal } = await import("tw-elements")
-    const myModal = Modal.getInstance(document.getElementById("confirmDeleteEvent"))
+    const myModal = Modal.getInstance(document.getElementById("confirmDeleteUserEvent"))
     return myModal.hide()
   }
 
   const handleEventDelete = async () => {
-    if(!currentEvent) return
+    if(!currentUserEvent) return
 
-    const eventId = currentEvent.uid
+    const eventId = currentUserEvent.uid
   
     setLoading(true);
   
@@ -32,21 +32,21 @@ export const ConfirmDeleteEvent = () => {
         successMessage('Event deleted successfully');
   
         // Remove the deleted event from the events array
-        const updatedEvents = events.filter((event) => event.uid !== eventId);
-        setEvents(updatedEvents);
+        const updatedEvents = userEvents.filter((event) => event.uid !== eventId);
+        setUserEvents(updatedEvents);
       } else {
         // Failed to delete event
         errorMessage('Failed to delete event');
       }
   
       setLoading(false);
-      setCurrentEvent(undefined);
+      setCurrentUserEvent(undefined);
       closeModal();
     } catch (error) {
       // Handle any errors here
       errorMessage('Error: ' + error);
       setLoading(false);
-      setCurrentEvent(undefined);
+      setCurrentUserEvent(undefined);
       closeModal();
     }
   };
@@ -63,9 +63,9 @@ export const ConfirmDeleteEvent = () => {
     <div
       data-te-modal-init
       className="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-      id="confirmDeleteEvent"
+      id="confirmDeleteUserEvent"
       tabIndex={-1}
-      aria-labelledby="confirmDeleteEventLabel"
+      aria-labelledby="confirmDeleteUserEventLabel"
       aria-modal="true"
       role="dialog">
       <div

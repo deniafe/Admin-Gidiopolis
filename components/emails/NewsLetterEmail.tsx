@@ -15,27 +15,27 @@ import {
 import * as React from "react"
 
 interface EmailTemplateProps {
-  name?: string
-  actionLabel: string
   buttonText: string
   href: string
+  message: string
+  preview: string
 }
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : '';
 
-export const WelcomeEmailTemplate = ({
-  name,
-  actionLabel,
+export const NewsLetterEmailTemplate = ({
   buttonText,
   href,
+  message,
+  preview
 }: EmailTemplateProps) => {
   return (
     <Html>
       <Head />
       <Preview>
-        Search for any event in your city.
+        {preview}
       </Preview>
       <Body style={main}>
         <Container style={container}>
@@ -46,14 +46,12 @@ export const WelcomeEmailTemplate = ({
             alt='Gidiopolis'
             style={logo}
           />
-          <Text style={paragraph}>Hi {name || 'there'},</Text>
           <Text style={paragraph}>
-            Welcome to Gidiopolis, where you can find the most amazing events happening in your city.
-            We are thrilled to welcome you to a world of excitement, entertainment, and unforgettable experiences.
+           {message}
           </Text>
           <Section style={btnContainer}>
             <Button style={button} href={href}>
-              Get Started
+              {buttonText}
             </Button>
           </Section>
           <Text style={paragraph}>
@@ -74,7 +72,7 @@ export const WelcomeEmailTemplate = ({
 
 export const PrimaryActionEmailHtml = (
   props: EmailTemplateProps
-) => render(<WelcomeEmailTemplate {...props} />, { pretty: true })
+) => render(<NewsLetterEmailTemplate {...props} />, { pretty: true })
 
 const main = {
   backgroundColor: '#ffffff',

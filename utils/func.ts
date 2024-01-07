@@ -36,20 +36,6 @@ const dateObject = new Date(milliseconds);
   return `${day} ${month} ${year}`;
 }
 
-// export function formatDate2(timestamp: Timestamp): string {
-//   const dateObject = timestamp.toDate();
- 
-//   const months: string[] = [
-//     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-//   ];
-
-//   const day = dateObject.getDate();
-//   const month = months[dateObject.getMonth()];
-//   const year = dateObject.getFullYear();
-
-//   return `${day} ${month} ${year}`;
-// }
-
 export function convertToTimestamp(dateString: string): Timestamp {
   const [day, month, year] = dateString.split('/').map(Number);
   // if (isNaN(day) || isNaN(month) || isNaN(year)) {
@@ -116,4 +102,19 @@ export function makePrice(inputString: string) {
   }
 }
 
+export function replacePlaceholders(inputString: string, subscriber: any) {
+  // Define regular expressions for placeholders
+  const userNameRegex = /\{user_name\}/g;
+  const userEmailRegex = /\{user_email\}/g;
 
+  // Replace placeholders with corresponding values
+  const replacedString = inputString
+    .replace(userNameRegex, subscriber.displayName)
+    .replace(userEmailRegex, subscriber.email);
+
+  return replacedString;
+}
+
+export function handleError(res: any, err: any) {
+  return res.json({ message: `${err.code} - ${err.message}` }, { status: 500 });
+}

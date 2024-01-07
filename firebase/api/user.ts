@@ -1,4 +1,5 @@
 import { AppUser } from '@/context/Types';
+import { baseUrl } from '@/utils/constants';
 import axios, { AxiosError } from 'axios';
 
 export async function createNewUser(
@@ -9,8 +10,8 @@ export async function createNewUser(
 ): Promise<AppUser> {
 
   try {
-    const response = await axios.post<AppUser>(
-      ' https://us-central1-gidiopolis.cloudfunctions.net/api/users',
+    const response = await axios.post(
+      `${baseUrl}/users/new`,
       {
         displayName,
         email,
@@ -20,11 +21,13 @@ export async function createNewUser(
     );
 
     // If the user was successfully created, response.data will contain the user details
-    return response.data;
+    return response.data.user;
+
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       // Handle AxiosError
       console.error('Axios Error creating user:', error.response?.data || error.message);
+
     } else {
       // Handle other types of errors
       console.error('Error creating user:', error);
@@ -35,13 +38,19 @@ export async function createNewUser(
 
 export async function getAllUsers(): Promise<AppUser[]> {
   try {
-    const response = await axios.get<AppUser[]>(
-      ' https://us-central1-gidiopolis.cloudfunctions.net/api/users'
+    const response = await axios.get(
+      `${baseUrl}/users`
     );
 
+    const data = response.data
+
+    const userList = data.userList
+
     // If the request was successful, response.data will contain the list of users
-    console.log('Data gotten from the server', response.data)
-    return response.data;
+    console.log('Data gotten from the server', response.data.userList)
+    
+    return userList;
+
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       // Handle AxiosError
@@ -57,7 +66,7 @@ export async function getAllUsers(): Promise<AppUser[]> {
 export async function editUser(userId: string, updatedUserData: Partial<AppUser>): Promise<AppUser> {
   try {
     const response = await axios.put<AppUser>(
-      ` https://us-central1-gidiopolis.cloudfunctions.net/api/users/${userId}`,
+      `${baseUrl}/users/edit/${userId}`,
       updatedUserData
     );
 
@@ -77,12 +86,17 @@ export async function editUser(userId: string, updatedUserData: Partial<AppUser>
 
 export async function deleteUser(userId: string): Promise<boolean> {
   try {
-    await axios.delete<void>(
-      ` https://us-central1-gidiopolis.cloudfunctions.net/api/users/${userId}`
+    const response = await axios.delete<void>(
+      `${baseUrl}/users/delete/${userId}`,
     );
 
     // If the DELETE request is successful (status code 204), return true
-    return true;
+     // Check the HTTP response status code (204 indicates success)
+     if (response.status === 200) {
+      return true; // Deletion was successful
+    } else {
+      return false; // Deletion was not successful
+    }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       // Handle AxiosError

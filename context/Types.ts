@@ -19,10 +19,9 @@ export interface Event {
   slug: string;
   eventBanner: string; 
   eventName: string; 
-  eventDate: Timestamp;
+  eventDate: {startDate: Timestamp, endDate: Timestamp, key: string};
   eventTime: string; 
-  eventAddress: string;
-  eventState: string;
+  eventAddress: {state: string, region: string, street: string, zoom: number, center: [number, number]};
   eventPrice: string;
   eventCategory: string;
   eventDescription: string;

@@ -5,7 +5,7 @@ import { successMessage } from '@/firebase/success_message';
 import { errorMessage } from '@/firebase/error_message';
 import { updateEventApprovalStatus } from '@/firebase/api/event';
 
-export const EditEvent = () => {
+export const EditUserEvent = () => {
 
   const { userEvents, setUserEvents, currentUserEvent, setCurrentUserEvent } = useUserEventContext()
 

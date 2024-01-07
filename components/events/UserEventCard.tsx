@@ -1,26 +1,40 @@
 'use client'
-import { cutOffLongStrings, formatDate2 } from '@/utils/func';
+import { cutOffLongStrings, formatDate, formatDate2 } from '@/utils/func';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { useUserEventContext } from "@/context/UserEventContext"
 import { Event } from '@/context/Types'
 
+// interface ReusableCardProps {
+//   id: string;
+//   slug: string;
+//   imageUrl: string;
+//   title: string;
+//   date: Timestamp;
+//   time: string; 
+//   venue: string;
+//   state: string;
+//   isFree: string;
+//   isApproved: boolean;
+//   organizer: string;
+// }
+
 interface ReusableCardProps {
   id: string;
   slug: string;
   imageUrl: string;
   title: string;
-  date: Timestamp;
-  time: string; 
-  venue: string;
-  state: string;
+  date: {startDate: Timestamp, endDate: Timestamp, key: string}; 
+  time: string;
+  venue: {state: string, region: string, street: string, zoom: number, center: [number, number]};
   isFree: string;
   isApproved: boolean;
   organizer: string;
 }
 
-const UserEventCard: React.FC<ReusableCardProps> = ({ id, slug, imageUrl, title, date, time, venue, state, isFree, isApproved, organizer }) => {
+
+const UserEventCard: React.FC<ReusableCardProps> = ({ id, slug, imageUrl, title, date, time, venue, isFree, isApproved, organizer }) => {
 
   const { setCurrentUserEvent, userEvents } = useUserEventContext()
 
@@ -64,10 +78,10 @@ const UserEventCard: React.FC<ReusableCardProps> = ({ id, slug, imageUrl, title,
           {cutOffLongStrings(title)}
         </h5>
         <p className="mb-2 text-sm font-medium text-neutral-400 dark:text-neutral-200">
-          {formatDate2(String(date))}, {time}
+          {formatDate(date.startDate)} to  {formatDate(date.endDate)}
         </p>
         <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-200">
-          {venue}, {state}
+          {venue.street}, {venue.region}, {venue.state}
         </p>
         <p 
         className="mb-2 w-10 rounded text-center text-white text-xs dark:text-neutral-200"
@@ -104,7 +118,7 @@ const UserEventCard: React.FC<ReusableCardProps> = ({ id, slug, imageUrl, title,
             <button
               type="button"
               data-te-toggle="modal"
-              data-te-target="#confirmDeleteEvent"
+              data-te-target="#confirmDeleteUserEvent"
               data-te-ripple-init
               data-te-ripple-color="light"
               onClick={handleDelete}

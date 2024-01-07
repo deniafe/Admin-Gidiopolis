@@ -8,7 +8,7 @@ import { getAllUsers } from "@/firebase/api/user";
 import { errorMessage } from "@/firebase/error_message";
 import { Spinner } from "@/components/global/Loading";
 
-export default function Dashboard () {
+export default function Page () {
   const { user } = useAuthContext()
   const { setUsers } = useUserEventContext()
   const router = useRouter()

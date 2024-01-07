@@ -46,7 +46,7 @@ export const UserData = () => {
       <div className="grid grid-cols-1 gap-4 gap-y-12 md:grid-cols-2 lg:grid-cols-3 mt-12 md:mt-2 px-[2rem]">
         {userEvents?.map((event, index) => (
           <div className="flex justify-center md:justify-start mb-4" key={index}>
-            <UserEventCard id={event.uid} slug={event.slug} isApproved={event.isApproved}  imageUrl={event.eventBanner} title={event.eventName} date={event.eventDate} time={event.eventTime} venue={event.eventAddress} state={event.eventState} isFree={event.eventPrice} organizer={event.organizerName} />
+            <UserEventCard id={event.uid} slug={event.slug} isApproved={event.isApproved}  imageUrl={event.eventBanner} title={event.eventName} date={event.eventDate} time={event.eventTime} venue={event.eventAddress} isFree={event.eventPrice} organizer={event.organizerName} />
           </div>
         ))}
       </div>

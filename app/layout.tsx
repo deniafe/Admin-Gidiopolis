@@ -7,12 +7,15 @@ import { ToastContainer } from 'react-toastify';
 import { ConfirmDelete } from '@/components/global/ConfirmDelete';
 import { useEffect } from 'react';
 import { EditUser } from '@/components/users/EditUser';
-import { useRouter } from "next/navigation"
-import { useAuthContext } from "@/context/AuthContext"
+// import { useRouter } from "next/navigation"
+// import { useAuthContext } from "@/context/AuthContext"
 import { CreateUser } from '@/components/users/CreateUser';
 import { UserEventContextProvider } from '@/context/UserEventContext';
+import { EventContextProvider } from '@/context/EventContext';
 import { ConfirmDeleteEvent } from '@/components/events/ConfirmDeleteEvent';
-import { EditEvent } from '@/components/events/EditUserEvent';
+import { EditUserEvent } from '@/components/events/EditUserEvent';
+import { EditEvent } from '@/components/events/EditEvent';
+import { ConfirmDeleteUserEvent } from '@/components/events/ConfirmDeleteUserEvent';
 
 
 export default function RootLayout({
@@ -42,18 +45,22 @@ export default function RootLayout({
       <meta name="description" content="Admin | Gidiopolis" />
       <body>
         <AuthContextProvider>
-          <UserEventContextProvider>
-            <Navbar />
-            <main className='md:px-[10rem]'>
-              {children}
-            </main>
-            <ConfirmDelete />
-            <EditUser />
-            <CreateUser />
-            <ConfirmDeleteEvent />
-            <EditEvent />
-            <ToastContainer />
-          </UserEventContextProvider>
+          <EventContextProvider>
+            <UserEventContextProvider>
+              <Navbar />
+              <main className='md:px-[10rem]'>
+                {children}
+              </main>
+              <ConfirmDelete />
+              <EditUser />
+              <CreateUser />
+              <ConfirmDeleteEvent />
+              <ConfirmDeleteUserEvent />
+              <EditEvent />
+              <EditUserEvent />
+              <ToastContainer />
+            </UserEventContextProvider>
+          </EventContextProvider>
         </AuthContextProvider>
       </body>
     </html>

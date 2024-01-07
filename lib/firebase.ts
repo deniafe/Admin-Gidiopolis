@@ -1,6 +1,5 @@
 import admin from 'firebase-admin';
-
-// const serviceAccount = require('./credentials.json');
+import { Timestamp } from 'firebase-admin/firestore';
 
 const serviceAccount = JSON.parse(
   process.env.NEXT_PUBLIC_FIREBASE_SERVICE_ACCOUNT_KEY as string
@@ -12,4 +11,6 @@ if (!admin.apps.length) {
   });
 }
 
-export { admin };
+
+
+export { admin, Timestamp };
